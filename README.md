@@ -1,2 +1,1 @@
-# demo-django
-A Djangoflow demo Django project
+# Djangoflow demo Django project.

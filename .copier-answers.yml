@@ -1,0 +1,17 @@
+# Changes here will be overwritten by Copier
+_src_path: ../copier-django-project/template
+copyright_date: '2022'
+copyright_holder: Apexive OSS
+copyright_holder_email: support@apexive.com
+google_project: djangoflow-demo
+language_code: en
+linux_extra_deps: null
+media_storage_cache_urls: false
+media_storage_public: true
+organisation: djangoflow
+project_description: Djangoflow demo Django project.
+project_domain: djangoflow.com
+project_name: demo
+repository_name: demo-django
+time_zone: UTC
+use_precommit: true
