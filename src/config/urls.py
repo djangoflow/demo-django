@@ -8,6 +8,8 @@ from django.contrib.auth.views import (
 from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+from rest_framework.schemas import get_schema_view
+from rest_framework import permissions
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -28,8 +30,18 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS
+schema_url_patterns = [
+    path("api/v0/", include("config.api_router", namespace="v0"))
+]
 urlpatterns += [
-    path("api/v0/", include("config.api_router", namespace="v0")),
+    *schema_url_patterns,
+    path('api/v0/openapi/', get_schema_view(
+        title="DemoProject",
+        description="API DemoProject",
+        version="0.0.0",
+        permission_classes=[permissions.AllowAny],
+        patterns=schema_url_patterns
+    ), name='openapi-schema'),
 ]
 
 if settings.DEBUG:

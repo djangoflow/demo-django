@@ -1,3 +1,4 @@
 django-df-auth
 django-admin-interface
 admin-totals
+pyyaml
