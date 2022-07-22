@@ -1,8 +1,7 @@
 from core.drf.serializers import ModelSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework_simplejwt.serializers import TokenObtainSerializer
-from rest_framework_simplejwt.tokens import SlidingToken
+
 
 User = get_user_model()
 
@@ -30,14 +29,6 @@ class TokenResponseSerializer(serializers.Serializer):
 class LoginResponseSerializer(serializers.Serializer):
     access_token = serializers.CharField()
     user = UserSerializer()
-
-
-class SlidingTokenObtainSerializer(TokenObtainSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = SlidingToken.for_user(user)
-        token.access_token = str(token)
-        return token
 
 
 class UserImagesSerializer(serializers.ModelSerializer):

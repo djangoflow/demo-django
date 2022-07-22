@@ -1,0 +1,10 @@
+import os
+import sys
+
+from celery import Celery
+
+sys.path.append("./apps")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
+app = Celery("demoprj")
+app.config_from_object("django.conf:settings", namespace="CELERY")
+app.autodiscover_tasks()
