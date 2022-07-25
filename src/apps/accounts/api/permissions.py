@@ -8,3 +8,11 @@ class IsOwner(permissions.BasePermission):
             get_attribute(obj, getattr(obj, "user_attribute", "user").split("."))
             == request.user
         )
+
+
+class IsOwnerOrReadOnly(IsOwner):
+    def has_object_permission(self, request, view, obj):
+        return bool(
+            request.method in permissions.SAFE_METHODS
+            or super().has_object_permission(request, view, obj)
+        )
