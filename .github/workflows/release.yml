@@ -1,0 +1,33 @@
+name: CI
+
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+on:
+  pull_request:
+    tags: [ "*" ]
+    paths-ignore: [ "docs/**" ]
+
+  push:
+    tags: [ "*" ]
+    paths-ignore: [ "docs/**" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+      - name: Setup Google Cloud
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+      - name: Cloud Build Base Image
+        if: startsWith(github.ref, 'refs/tags/')
+        run: env CI_COMMIT_REF_NAME=${GITHUB_REF#refs/tags/} sh tools/cloudbuild.sh base
+      - name: Cloud Build Django Image
+        if: startsWith(github.ref, 'refs/tags/')
+        run: env CI_COMMIT_REF_NAME=${GITHUB_REF#refs/tags/} sh tools/cloudbuild.sh src
