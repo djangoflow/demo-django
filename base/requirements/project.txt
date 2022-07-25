@@ -1,4 +1,6 @@
-django-df-auth
-django-admin-interface
-admin-totals
-pyyaml
+django-hashid-field
+django-simple-history==3.0.0
+django-countries==7.2.1
+django-fsm
+pandas
+drf-nested-routers
