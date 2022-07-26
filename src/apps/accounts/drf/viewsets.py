@@ -3,12 +3,19 @@ from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
 from rest_framework.viewsets import GenericViewSet
 
 from .serializers import UserSerializer
-
+from ..models import User
 
 class UserViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
-    authentication_classes = (IsOwner,)
+    permission_classes = (IsOwner,)
     serializer_class = UserSerializer
+    queryset = User.objects.filter(is_active=True)
 
-    # TODO: refactor this for special '_' id
     def get_object(self):
-        return self.request.user
+        """
+        Handles special case of '0' or 0 or '_' meaning current user
+        :return: requested user details
+        """
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        if self.kwargs[lookup_url_kwarg] in (0, '0', '_'):
+            self.kwargs[lookup_url_kwarg] = self.request.user.id
+        return super().get_object()

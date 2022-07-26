@@ -4,8 +4,9 @@ from rest_framework.fields import get_attribute
 
 class IsOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
+        user_attribute = getattr(obj, "user_attribute", None)
         return (
-            get_attribute(obj, getattr(obj, "user_attribute", "user").split("."))
+            get_attribute(obj, user_attribute.split(".") if user_attribute else [])
             == request.user
         )
 
