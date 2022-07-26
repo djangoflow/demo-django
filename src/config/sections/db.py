@@ -1,10 +1,10 @@
-from .base import env
+from .base import env, BASE_DIR
 
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    "default": env.db("DATABASE_URL", default="sqlite:////path-to-my/database.sqlite"),
+    "default": env.db("DATABASE_URL", default=f"sqlite:////{BASE_DIR}/database.sqlite"),
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
