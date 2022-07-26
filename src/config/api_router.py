@@ -25,6 +25,7 @@ schema_view = get_schema_view(
 
 
 urlpatterns = router.urls + [
+    path("auth/", include("df_auth.urls")),
     path("accounts/", include("accounts.drf.urls")),
     path(
         "swagger",

@@ -1,3 +1,5 @@
+from df_auth.djangoflow import REQUIRED_APPS as DF_AUTH_APPS
+
 # APPS
 # ------------------------------------------------------------------------------
 CORE_APPS = [
@@ -17,13 +19,13 @@ CORE_EXTENSIONS = [
     "colorfield",
     "phonenumber_field",
     "simple_history",
-    "rest_framework_simplejwt",
     "django_filters",
     "health_check",
     "health_check.db",
     "health_check.cache",
     "health_check.storage",
     "django_extensions",
+    *DF_AUTH_APPS
 ]
 
 LOCAL_APPS = [
