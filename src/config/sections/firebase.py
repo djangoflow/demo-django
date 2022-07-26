@@ -1,5 +1,4 @@
 import firebase_admin
-from firebase_admin.firestore import client
 
 from .base import env
 

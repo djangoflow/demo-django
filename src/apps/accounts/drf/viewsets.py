@@ -1,6 +1,5 @@
-from rest_framework.viewsets import GenericViewSet
-
 from core.drf.permissions import IsOwner
+from rest_framework.viewsets import GenericViewSet
 
 
 class UserViewSet(GenericViewSet):

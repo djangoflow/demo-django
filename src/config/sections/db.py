@@ -1,4 +1,4 @@
-from .base import env, BASE_DIR
+from .base import BASE_DIR, env
 
 # DATABASES
 # ------------------------------------------------------------------------------

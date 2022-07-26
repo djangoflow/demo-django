@@ -1,6 +1,9 @@
 {% load static %}
 <html>
 <head><style>
+  body {
+    background: #0b0b0b;
+  }
   .center {
     display: flex;
     justify-content: center;
@@ -8,10 +11,13 @@
     text-align: center;
     min-height: 100vh;
   }
+  .logo {
+    max-height: 150px;
+  }
 </style></head>
 <body>
 <div class="center">
-  <image src="{% static 'images/logo.svg' %}"></image>
+  <image class="logo" src="{% static 'images/logo.svg' %}"></image>
 </div>
 </body>
 </html>
