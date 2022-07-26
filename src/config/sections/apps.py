@@ -1,4 +1,4 @@
-from df_auth.djangoflow import REQUIRED_APPS as DF_AUTH_APPS
+from .djangoflow import DF_APPS
 
 # APPS
 # ------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ CORE_EXTENSIONS = [
     "health_check.cache",
     "health_check.storage",
     "django_extensions",
-    *DF_AUTH_APPS
+    *DF_APPS,
 ]
 
 LOCAL_APPS = [
