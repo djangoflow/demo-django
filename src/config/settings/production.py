@@ -1,13 +1,8 @@
 from .base import *
 
-SECRET_KEY = env("DJANGO_SECRET_KEY")
-ALLOWED_HOSTS = (
-    env.list(
-        "DJANGO_ALLOWED_HOSTS",
-        default=[f"{host}.{DOMAIN}" for host in ("api", "console", "web", "static")],
-    )
-    + [env("POD_IP")]
-)
+ALLOWED_HOSTS = env.list(
+    "DJANGO_ALLOWED_HOSTS",
+) + [env("POD_IP")]
 
 DATABASES["default"] = env.db("DATABASE_URL")  # noqa F405
 DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
@@ -38,10 +33,10 @@ GS_BUCKET_NAME = env("DJANGO_GCP_STORAGE_BUCKET_NAME")
 
 STATICFILES_STORAGE = "config.storages.NoSourceMapsStorage"
 DEFAULT_FILE_STORAGE = "config.storages.MediaRootGoogleCloudStorage"
-MEDIA_HOST = env.str("DJANGO_MEDIA_HOST", f'media.{env("DOMAIN")}')
+MEDIA_HOST = env.str("DJANGO_MEDIA_HOST")
 MEDIA_URL = f"https://{MEDIA_HOST}/media/"
 
-STATIC_HOST = env.str("DJANGO_STATIC_HOST", f'static.{env("DOMAIN")}')
+STATIC_HOST = env.str("DJANGO_STATIC_HOST")
 STATIC_URL = f"https://{STATIC_HOST}/static/"
 
 TEMPLATES[-1]["OPTIONS"]["loaders"] = [  # type: ignore[index] # noqa F405

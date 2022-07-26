@@ -1,3 +1,4 @@
+# TODO this needs ot be refactored from ground up
 from .base import env
 
 DJANGO_LOG_LEVEL = env.str("DJANGO_LOG_LEVEL", "INFO")

@@ -1,6 +1,6 @@
 import os
 
-from .base import DOMAIN, env
+from .base import env
 
 if os.getenv("EMAIL_URL"):
     EMAIL_CONFIG = env.email_url("EMAIL_URL")
@@ -16,17 +16,12 @@ EMAIL_BACKEND = env(
 )
 EMAIL_TIMEOUT = 5
 
-EMAIL_CONTACT = f"support@{DOMAIN}"
-DEVOPS_CONTACT = f"devops@{DOMAIN}"
-EMAIL_NOREPLY = f"noreply@{DOMAIN}"
-
 DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default=f"DemoProject <noreply@{DOMAIN}>"
+    "DJANGO_DEFAULT_FROM_EMAIL", default="DjangoFlow Demo Project <noreply@localhost>"
 )
-SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 EMAIL_SUBJECT_PREFIX = env(
     "DJANGO_EMAIL_SUBJECT_PREFIX",
-    default="['demoprj']",
+    default="[DjangoFlow]",
 )
 
 ANYMAIL = {

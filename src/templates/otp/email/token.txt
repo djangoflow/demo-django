@@ -1,0 +1,10 @@
+Here is your secret link to login:
+
+        {{ app_url }}/#/login/{{ secret_token }}
+
+Alternatively you can use this single-time login code:
+
+                        {{ token }}
+
+
+You can safely ignore this e-mail if you were not trying to login.

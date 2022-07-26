@@ -1,1 +1,17 @@
-<h1>DemoProject</h1>
+{% load static %}
+<html>
+<head><style>
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+</style></head>
+<body>
+<div class="center">
+  <image src="{% static 'images/logo.svg' %}"></image>
+</div>
+</body>
+</html>

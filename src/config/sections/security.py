@@ -10,6 +10,3 @@ SECURE_BROWSER_XSS_FILTER = True
 # This is needed for django-admin-interface
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
-
-# django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
-CORS_URLS_REGEX = r"^/api/.*$"

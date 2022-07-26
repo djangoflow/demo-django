@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/demo-django:$BRANCH_NAME', '--build-arg',
-            'BRANCH_NAME=$BRANCH_NAME', '--build-arg', 'PROJECT_ID=$PROJECT_ID', '-f', 'Dockerfile.jinja2', '.' ]
+    args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/django:$BRANCH_NAME', '--build-arg',
+            'BRANCH_NAME=$BRANCH_NAME', '--build-arg', 'PROJECT_ID=$PROJECT_ID', '-f', 'Dockerfile', '.' ]
 images:
-  - 'gcr.io/$PROJECT_ID/demo-django:$BRANCH_NAME'
+  - 'gcr.io/$PROJECT_ID/django:$BRANCH_NAME'

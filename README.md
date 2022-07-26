@@ -64,7 +64,7 @@ The `src` is the Django top level folder containing the `manage.py` script and f
 ```
 src/
 ├── apps/               - project specific applications
-├── config/             - project settings, url and certain common files 
+├── config/             - project settings, url and certain common files
 ├── locale/             - translations and localisation
 ├── static/             - project wide static files, such as assets, css and js
 ├── templates/          - project specific templates (base, pages, emails, pdf etc)
@@ -81,7 +81,7 @@ Settings and urls are further organised into `deployments` (for a lack of better
 ```
 config/
 ├── sections/           - common sections to be included
-├── local/              - local configuration for development 
+├── local/              - local configuration for development
 ├── web/                - configuration for serving web
 ├── admin/              - configuration for serving admin site
 ├── api/                - configuration for serving api

@@ -30,7 +30,7 @@ def query_debugger(func):
     return func
 
 
-def safe_model_call(message=None):
+def safe_model_call(message: str = None):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(self, *args, **kwargs):

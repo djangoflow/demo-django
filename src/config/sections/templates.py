@@ -1,4 +1,4 @@
-from .base import ROOT_DIR
+from .base import BASE_DIR
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -8,7 +8,7 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        "DIRS": [str(ROOT_DIR / "templates")],
+        "DIRS": [str(BASE_DIR / "templates")],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types

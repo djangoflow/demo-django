@@ -1,7 +1,7 @@
-from .email import DEVOPS_CONTACT
+from .email import DEFAULT_FROM_EMAIL
 
 # ADMIN
 # ------------------------------------------------------------------------------
 ADMIN_URL = "admin/"
-ADMINS = [("""demoprj""", DEVOPS_CONTACT)]
+ADMINS = [("""Administrator""", DEFAULT_FROM_EMAIL)]
 MANAGERS = ADMINS

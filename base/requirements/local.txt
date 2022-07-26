@@ -1,4 +1,4 @@
--r base.txt
+-r production.txt
 
 Werkzeug==2.0.2 # https://github.com/pallets/werkzeug
 ipdb==0.13.9  # https://github.com/gotcha/ipdb
@@ -33,3 +33,4 @@ factory-boy==3.2.1  # https://github.com/FactoryBoy/factory_boy
 django-debug-toolbar==3.2.2  # https://github.com/jazzband/django-debug-toolbar
 django-coverage-plugin==2.0.2  # https://github.com/nedbat/django_coverage_plugin
 pytest-django==4.4.0  # https://github.com/pytest-dev/pytest-django
+djangorestframework-simplejwt[crypto]

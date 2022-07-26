@@ -3,16 +3,13 @@ from ..sections.admin import *  # noqa
 from ..sections.apps import *  # noqa
 from ..sections.base import *  # noqa
 from ..sections.celery import *  # noqa
-from ..sections.cors import *  # noqa
 from ..sections.data import *  # noqa
 from ..sections.db import *  # noqa
 from ..sections.drf import *  # noqa
 from ..sections.email import *  # noqa
-from ..sections.demoprj import *  # noqa
+from ..sections.firebase import *  # noqa
 from ..sections.logging import *  # noqa
 from ..sections.middleware import *  # noqa
-from ..sections.money import *  # noqa
-from ..sections.otp import *  # noqa
 from ..sections.security import *  # noqa
 from ..sections.sentry import *  # noqa
 from ..sections.storages import *  # noqa

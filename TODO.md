@@ -1,0 +1,3 @@
+- customize/beautify the templates
+- consolidate and clean up all .gitignores
+- add type hints everywhere

@@ -3,7 +3,7 @@ from .base import DEBUG
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "core.drf.exceptions.errors_formatter_exception_handler",
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
@@ -22,15 +22,3 @@ if DEBUG:
     REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] += (
         "rest_framework.authentication.SessionAuthentication",
     )
-
-SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {
-        "JWT": {
-            "type": "oauth2",
-            "flow": "accessCode",
-        }
-    },
-    "DEFAULT_FIELD_INSPECTORS": [
-        "core.drf.inspectors.ChoiceDisplayFieldInspector",
-    ],
-}

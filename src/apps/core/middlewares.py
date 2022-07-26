@@ -1,7 +1,30 @@
+from core.exceptions import AdminError
+from django.contrib import messages
+from django.core.exceptions import ValidationError
+from django.shortcuts import redirect
+from django.template.response import TemplateResponse
+
 try:
     from django.utils.deprecation import MiddlewareMixin
 except ImportError:
     MiddlewareMixin = object
+
+
+class AdminCustomErrorHandlingMiddleware(MiddlewareMixin):
+    def process_exception(self, request, exception):
+        if (
+            request.META.get("CONTENT_TYPE") == "application/x-www-form-urlencoded"
+            and request.user.is_authenticated
+            and request.user.is_staff
+        ):
+            if isinstance(exception, ValidationError) or isinstance(
+                exception, AdminError
+            ):
+                messages.error(request, str(exception))
+                return redirect(request.META["HTTP_REFERER"])
+            return TemplateResponse(
+                request, "admin/error_handler.html", {"messages": [str(exception)]}
+            )
 
 
 class ForceDefaultLanguageMiddleware(MiddlewareMixin):

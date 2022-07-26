@@ -1,81 +1,30 @@
+from core.admin import IsActiveAdmin
 from django.apps import apps
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
-from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
-from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportMixin
 
-from .forms import UserCreationForm
-from .models import Group
-
-User = get_user_model()
+from .import_export import UserResource
+from .models import Group, User
 
 
 @admin.register(User)
-class UserAdmin(ImportExportMixin, auth_admin.UserAdmin):
-
-    def send_invite_email(self, request, qs):
-        for user in qs:
-            user.send_invite_email()
-
-    actions = [send_invite_email]
+class UserAdmin(ImportExportMixin, IsActiveAdmin, auth_admin.UserAdmin):
+    resource_class = UserResource
     ordering = ("email",)
-    add_form = UserCreationForm
-    fieldsets = (
-        (
-            None,
-            {
-                "fields": (
-                    "email",
-                    "avatar",
-                    "password",
-                    "force_password_change",
-                )
-            },
-        ),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "tel")}),
-        (
-            _("Permissions"),
-            {
-                "fields": (
-                    "is_active",
-                    "is_staff",
-                    "is_superuser",
-                    "groups",
-                    "user_permissions",
-                ),
-            },
-        ),
-        (
-            _("Important dates"),
-            {"fields": ("last_login", "date_joined", "invite_sent")},
-        ),
-    )
     list_display = [
         "email",
         "first_name",
         "last_name",
-        "tel",
+        "phone_number",
         "last_login",
+        "is_staff",
         "is_superuser",
     ]
-    search_fields = ["first_name", "last_name", "email", "tel"]
+    search_fields = ["first_name", "last_name", "email", "phone_number"]
     list_display_links = ["email"]
     date_hierarchy = "last_login"
-
-    add_fieldsets = (
-        (
-            None,
-            {
-                "fields": (
-                    "first_name",
-                    "last_name",
-                    "email",
-                ),
-            },
-        ),
-    )
 
 
 admin.site.unregister(apps.get_model("auth", "Group"))

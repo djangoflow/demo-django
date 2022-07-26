@@ -1,2 +1,0 @@
-DEMO_PROJECT_SETTINGS = {}
-    

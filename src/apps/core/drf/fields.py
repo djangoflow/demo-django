@@ -2,10 +2,8 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import exceptions, serializers
 
 
-class ChoiceDisplayField(serializers.ChoiceField):
-    def __init__(self, choices, **kwargs):
-        super().__init__(choices=choices, **kwargs)
-        self._reverse_choices = dict((v, k) for k, v in self._choices.items())
+class AbstractEnumChoiceFieldBase(serializers.ChoiceField):
+    _reverse_choices = {}
 
     def to_representation(self, obj):
         return obj if obj == "" and self.allow_blank else self._choices[obj]
@@ -19,12 +17,13 @@ class ChoiceDisplayField(serializers.ChoiceField):
             raise exceptions.ValidationError(_("{} is not a valid choice".format(data)))
 
 
-class ImageAbsoluteURLField(serializers.URLField):
-    def to_representation(self, image):
-        if image and image.url:
-            request = self.context.get("request", None)
-            if request is not None:
-                return request.build_absolute_uri(image.url)
-            return image.url
+class EnumChoiceField(AbstractEnumChoiceFieldBase):
+    def __init__(self, enum, **kwargs):
+        super().__init__(choices=enum.choices, **kwargs)
+        self._reverse_choices = dict((e.name, e) for e in enum)
 
-        return None
+
+class EnumLabelChoiceField(AbstractEnumChoiceFieldBase):
+    def __init__(self, enum, **kwargs):
+        super().__init__(choices=enum.choices, **kwargs)
+        self._reverse_choices = dict((e.label, e) for e in enum)

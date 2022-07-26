@@ -1,7 +1,5 @@
 from rest_framework import serializers
 
-from .fields import ChoiceDisplayField
-
 
 class ErrorSerializer(serializers.Serializer):
     message = serializers.CharField(required=True)
@@ -17,9 +15,5 @@ class EmptyResponseSerializer(serializers.Serializer):
     pass
 
 
-class ApiDetailSerializer(serializers.Serializer):
+class DetailSerializer(serializers.Serializer):
     detail = serializers.CharField()
-
-
-class ModelSerializer(serializers.ModelSerializer):
-    serializer_choice_field = ChoiceDisplayField
