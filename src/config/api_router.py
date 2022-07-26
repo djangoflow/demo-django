@@ -20,6 +20,7 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=(permissions.AllowAny,),
     version="v1",
+    urlconf="config.urls",
 )
 
 
@@ -28,6 +29,6 @@ urlpatterns = router.urls + [
     path(
         "swagger",
         schema_view,
-        name="schema-json",
+        name="openapi-schema",
     ),
 ]
