@@ -2,17 +2,9 @@ from django.conf import settings
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import permissions
-from rest_framework.routers import DefaultRouter, SimpleRouter
 from rest_framework.schemas import get_schema_view
 
 app_name = "api"
-
-if settings.DEBUG:
-    router = DefaultRouter()
-
-else:
-    router = SimpleRouter()
-
 
 schema_view = get_schema_view(
     title="DjangoFlow Demo API",
@@ -23,13 +15,8 @@ schema_view = get_schema_view(
     urlconf="config.urls",
 )
 
-
-urlpatterns = router.urls + [
+urlpatterns = [
     path("auth/", include("df_auth.urls")),
     path("accounts/", include("accounts.drf.urls")),
-    path(
-        "swagger",
-        schema_view,
-        name="openapi-schema",
-    ),
+    path("", schema_view, name="openapi-schema"),
 ]
