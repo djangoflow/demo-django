@@ -1,11 +1,11 @@
 from ..sections.accounts import *  # noqa
 from ..sections.admin import *  # noqa
 from ..sections.apps import *  # noqa
+from ..sections.auth import *  # noqa
 from ..sections.base import *  # noqa
 from ..sections.celery import *  # noqa
 from ..sections.data import *  # noqa
 from ..sections.db import *  # noqa
-from ..sections.df_auth import *  # noqa
 from ..sections.djangoflow import *  # noqa
 from ..sections.drf import *  # noqa
 from ..sections.email import *  # noqa

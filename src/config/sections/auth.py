@@ -1,6 +1,8 @@
 from datetime import timedelta
-from .base import env
+
 from twilio.rest import Client
+
+from .base import env
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=14),
@@ -28,4 +30,17 @@ OTP_TWILIO_TOKEN_VALIDITY = 300
 OTP_EMAIL_TOKEN_VALIDITY = 300
 OTP_EMAIL_SUBJECT = "Your secret link to login to DjangoFlow"
 
-TWILIO_CLIENT = Client(OTP_TWILIO_ACCOUNT, OTP_TWILIO_AUTH) if OTP_TWILIO_ACCOUNT and OTP_TWILIO_AUTH else None
+TWILIO_CLIENT = (
+    Client(OTP_TWILIO_ACCOUNT, OTP_TWILIO_AUTH)
+    if OTP_TWILIO_ACCOUNT and OTP_TWILIO_AUTH
+    else None
+)
+
+SOCIAL_AUTH_URL_NAMESPACE = "v1:social"
+
+AUTHENTICATION_BACKENDS = [
+    "df_auth.backends.EmailOTPBackend",
+    "django.contrib.auth.backends.ModelBackend",
+    "social_core.backends.google.GoogleOAuth2",
+    "social_core.backends.facebook.FacebookOAuth2",
+]
