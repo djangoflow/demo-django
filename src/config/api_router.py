@@ -11,11 +11,11 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=(permissions.AllowAny,),
     version="v1",
-    urlconf="config.urls",
+    urlconf="config.api_router",
 )
 
 urlpatterns = [
-    path("auth/", include("df_auth.urls")),
+    path("auth/", include("df_auth.urls"), name='auth'),
     path("accounts/", include("accounts.drf.urls")),
     path("", schema_view, name="openapi-schema"),
 ]
