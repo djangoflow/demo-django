@@ -15,6 +15,7 @@ class Logger(DefaultLogger):
         logger = logging.getLogger("gunicorn.access")
         logger.addFilter(HealthCheckFilter())
 
+
 # TODO: setup proper google cloud handling
 # logconfig_dict = {
 #     "handlers": {

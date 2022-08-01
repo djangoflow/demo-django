@@ -31,6 +31,7 @@ CORE_EXTENSIONS = [
 LOCAL_APPS = [
     "core",
     "accounts",
+    "notes",
 ]
 
 ADMIN_APPS = [

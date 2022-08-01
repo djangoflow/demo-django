@@ -15,7 +15,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("auth/", include("df_auth.urls"), name='auth'),
+    path("auth/", include("df_auth.urls"), name="auth"),
     path("accounts/", include("accounts.drf.urls")),
+    path("notes/", include("notes.drf.urls")),
     path("", schema_view, name="openapi-schema"),
 ]
