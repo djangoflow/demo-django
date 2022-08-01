@@ -15,18 +15,18 @@ class Logger(DefaultLogger):
         logger = logging.getLogger("gunicorn.access")
         logger.addFilter(HealthCheckFilter())
 
-
-logconfig_dict = {
-    "handlers": {
-        "console": {
-            "class": "google.cloud.logging_v2.handlers.ContainerEngineHandler",
-            "level": "WARN",
-        },
-        "error_console": {
-            "class": "google.cloud.logging_v2.handlers.ContainerEngineHandler",
-            "level": "WARN",
-        },
-    }
-}
+# TODO: setup proper google cloud handling
+# logconfig_dict = {
+#     "handlers": {
+#         "console": {
+#             "class": "google.cloud.logging_v2.handlers.ContainerEngineHandler",
+#             "level": "WARN",
+#         },
+#         "error_console": {
+#             "class": "google.cloud.logging_v2.handlers.ContainerEngineHandler",
+#             "level": "WARN",
+#         },
+#     }
+# }
 
 logger_class = Logger
