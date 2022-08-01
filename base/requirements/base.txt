@@ -42,6 +42,6 @@ firebase-admin
 fcm-django==1.0.8
 
 # DjangoFlow
-df-auth
+django-df-auth
 
 -r project.txt
