@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.conf.urls import include
 from django.urls import path
 from rest_framework import permissions
@@ -16,7 +17,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("auth/", include("df_auth.urls"), name="auth"),
-    path("accounts/", include("accounts.drf.urls")),
-    path("notes/", include("notes.drf.urls")),
     path("", schema_view, name="openapi-schema"),
+] + [
+    path(f"{app.api_path}", include(f"{app.name}.drf.urls"))
+    for app in apps.get_app_configs()
+    if hasattr(app, "api_path")
 ]

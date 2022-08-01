@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class AccountsConfig(AppConfig):
     default_auto_field = "hashid_field.BigHashidAutoField"
+    api_path = "accounts/"
     name = "accounts"
     verbose_name = _("Accounts")
 

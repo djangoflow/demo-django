@@ -1,6 +1,7 @@
-from ..models import Note
 from hashid_field.rest import HashidSerializerCharField
 from rest_framework import serializers
+
+from ..models import Note
 
 
 class NoteSerializer(serializers.ModelSerializer):
