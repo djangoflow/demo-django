@@ -3,6 +3,11 @@ from django.conf.urls import include
 from django.urls import path
 from rest_framework import permissions
 from rest_framework.schemas import get_schema_view
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
 app_name = "api"
 
@@ -21,4 +26,11 @@ urlpatterns = [
     if hasattr(app, "api_path")
 ]
 
-urlpatterns.append(path("", schema_view, name="openapi-schema"))
+urlpatterns += [
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    path(
+        "swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"
+    ),
+]
+# (path("", schema_view, name="openapi-schema"))

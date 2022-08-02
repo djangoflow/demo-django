@@ -25,6 +25,8 @@ CORE_EXTENSIONS = [
     "health_check.cache",
     "health_check.storage",
     "django_extensions",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
     *DF_APPS,
 ]
 
