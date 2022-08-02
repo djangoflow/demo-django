@@ -16,10 +16,9 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("auth/", include("df_auth.urls"), name="auth"),
-    path("", schema_view, name="openapi-schema"),
-] + [
     path(f"{app.api_path}", include(f"{app.name}.drf.urls"))
     for app in apps.get_app_configs()
     if hasattr(app, "api_path")
 ]
+
+urlpatterns.append(path("", schema_view, name="openapi-schema"))
