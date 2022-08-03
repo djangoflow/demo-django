@@ -11,14 +11,6 @@ from drf_spectacular.views import (
 
 app_name = "api"
 
-schema_view = get_schema_view(
-    title="DjangoFlow Demo API",
-    description="DjangoFlow Demo API",
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-    version="v1",
-    urlconf="config.api_router",
-)
 
 urlpatterns = [
     path(f"{app.api_path}", include(f"{app.name}.drf.urls"))
@@ -33,4 +25,15 @@ urlpatterns += [
         "swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"
     ),
 ]
+
+# DEPRECATED in favor of drf-spectacular
+# schema_view = get_schema_view(
+#     title="DjangoFlow Demo API",
+#     description="DjangoFlow Demo API",
+#     public=True,
+#     permission_classes=(permissions.AllowAny,),
+#     version="v1",
+#     urlconf="config.api_router",
+# )
 # (path("", schema_view, name="openapi-schema"))
+

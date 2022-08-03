@@ -16,7 +16,7 @@ REST_FRAMEWORK = {
     "TIME_FORMAT": "%H:%M",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "DEFAULT_THROTTLE_RATES": {"anon": "100/min", "user": "1000/min"},
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_SCHEMA_CLASS": "core.drf.openapi.AutoSchema",
 }
 
 SPECTACULAR_SETTINGS = {
