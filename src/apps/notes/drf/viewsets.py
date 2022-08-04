@@ -1,11 +1,10 @@
 from core.drf.permissions import IsOwner
-from rest_framework.viewsets import ModelViewSet
-
-from ..models import Note
+from core.drf.viewsets import ModelOwnerViewSet
 from .serializers import NoteSerializer
+from ..models import Note
 
 
-class NoteViewSet(ModelViewSet):
+class NoteViewSet(ModelOwnerViewSet):
     permission_classes = (IsOwner,)
     serializer_class = NoteSerializer
     queryset = Note.objects.all()
