@@ -1,4 +1,4 @@
 #!/bin/sh
-export KUBECONFIG=~/.kube/demo-django_kubeconfig.yaml \
+export KUBECONFIG=~/.kube/dfc_kubeconfig.yaml \
 	&& sh tools/cloudbuild.sh src \
-	&& kubectl delete po -n demo -l app.kubernetes.io/name=django
+	&& kubectl delete po -n ae -l app.kubernetes.io/part-of=django
