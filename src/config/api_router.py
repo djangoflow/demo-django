@@ -1,8 +1,6 @@
 from django.apps import apps
 from django.conf.urls import include
 from django.urls import path
-from rest_framework import permissions
-from rest_framework.schemas import get_schema_view
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
@@ -36,4 +34,3 @@ urlpatterns += [
 #     urlconf="config.api_router",
 # )
 # (path("", schema_view, name="openapi-schema"))
-

@@ -1,7 +1,8 @@
 from core.drf.permissions import IsOwner
 from core.drf.viewsets import ModelOwnerViewSet
-from .serializers import NoteSerializer
+
 from ..models import Note
+from .serializers import NoteSerializer
 
 
 class NoteViewSet(ModelOwnerViewSet):
