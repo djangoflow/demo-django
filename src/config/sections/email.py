@@ -17,7 +17,7 @@ EMAIL_BACKEND = env(
 EMAIL_TIMEOUT = 5
 
 DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="DjangoFlow Demo <support@apexive.com>"
+    "DJANGO_DEFAULT_FROM_EMAIL", default="DjangoFlow Demo <noreply@apexample.com>"
 )
 EMAIL_SUBJECT_PREFIX = env(
     "DJANGO_EMAIL_SUBJECT_PREFIX",
