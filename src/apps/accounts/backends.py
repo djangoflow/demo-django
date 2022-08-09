@@ -8,7 +8,7 @@ class AppEmailOTPBackend(EmailOTPBackend):
             *args,
             extra_context={
                 "username": kwargs.get("email", None) or kwargs.get("user").email,
-                "base_url": f"https://app.{Site.objects.get_current().domain}/#/login/",
+                "base_url": f"https://demo.{Site.objects.get_current().domain}/#/login/",
             },
             **kwargs,
         )
