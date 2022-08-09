@@ -41,10 +41,10 @@ TWILIO_CLIENT = (
 SOCIAL_AUTH_URL_NAMESPACE = "v1:social"
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.apple.AppleIdAuth',
+    "social_core.backends.apple.AppleIdAuth",
     "social_core.backends.facebook.FacebookAppOAuth2",
     "social_core.backends.google.GoogleOAuth2",
-    "df_auth.backends.EmailOTPBackend",
+    "accounts.backends.AppEmailOTPBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 
@@ -52,7 +52,9 @@ for k, v in os.environ.items():
     if k.startswith("SOCIAL_AUTH_"):
         setattr(sys.modules[__name__], k, v)
 
-SOCIAL_AUTH_APPLE_ID_SECRET = env.str("SOCIAL_AUTH_APPLE_ID_SECRET", default="", multiline=True)
+SOCIAL_AUTH_APPLE_ID_SECRET = env.str(
+    "SOCIAL_AUTH_APPLE_ID_SECRET", default="", multiline=True
+)
 
 SOCIAL_AUTH_FACEBOOK_APP_PROFILE_EXTRA_PARAMS = {
     "fields": ", ".join(
@@ -74,8 +76,8 @@ SOCIAL_AUTH_FACEBOOK_APP_PROFILE_EXTRA_PARAMS = {
 SOCIAL_AUTH_FACEBOOK_SCOPE = ["email", "public_profile"]
 SOCIAL_AUTH_FACEBOOK_APP_SCOPE = ["email", "public_profile"]
 
-SOCIAL_AUTH_APPLE_ID_SCOPE = ['email', 'name']
-SOCIAL_AUTH_APPLE_ID_EMAIL_AS_USERNAME = True   # If you want to use email as username
+SOCIAL_AUTH_APPLE_ID_SCOPE = ["email", "name"]
+SOCIAL_AUTH_APPLE_ID_EMAIL_AS_USERNAME = True  # If you want to use email as username
 
 SOCIAL_AUTH_PIPELINE = [
     # Get the information we can about the user and return it in a simple

@@ -1,10 +1,10 @@
-Here is your secret link to login:
+{% load auth_magic_link %}
+Here is your magic link to login:
 
-        {{ app_url }}/#/login/{{ secret_token }}
+{% auth_magic_link %}
 
 Alternatively you can use this single-time login code:
 
-                        {{ token }}
-
+{{ token }}
 
 You can safely ignore this e-mail if you were not trying to login.
