@@ -15,7 +15,7 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 100,
     "TIME_FORMAT": "%H:%M",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
-    "DEFAULT_THROTTLE_RATES": {"anon": "100/min", "user": "1000/min"},
+    "DEFAULT_THROTTLE_RATES": {"anon": "100/min", "user": "1000/min", "df_auth": "1/min"},
     "DEFAULT_SCHEMA_CLASS": "core.drf.openapi.AutoSchema",
 }
 
