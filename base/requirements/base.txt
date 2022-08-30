@@ -44,6 +44,6 @@ fcm-django==1.0.8
 
 # DjangoFlow
 django-df-auth>=0.9
-django-df-notifications>=0.3
+django-df-notifications>=0.4
 
 -r project.txt
