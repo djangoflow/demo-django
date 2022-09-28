@@ -1,4 +1,5 @@
 import os
+from corsheaders.defaults import default_headers as cors_default_headers
 
 os.environ["DJANGO_READ_ENV_FILE"] = "True"  # noqa
 
@@ -19,7 +20,7 @@ EMAIL_BACKEND = env(
     "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
 )
 
-INSTALLED_APPS = ["whitenoise.runserver_nostatic", *ADMIN_APPS, "debug_toolbar"]
+INSTALLED_APPS = ["whitenoise.runserver_nostatic", *ADMIN_APPS, "debug_toolbar", "corsheaders"]
 MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 DEBUG_TOOLBAR_CONFIG = {
     "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
@@ -29,6 +30,9 @@ INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 CELERY_TASK_ALWAYS_EAGER = True
 CELERY_TASK_EAGER_PROPAGATES = True
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_URLS_REGEX = r"^/api/.*$"
+CORS_ALLOW_HEADERS = cors_default_headers + ("accept-language", "cache-control")
 LOGGING["loggers"] = {
     "root": {
         "level": "DEBUG",
