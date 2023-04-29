@@ -1,43 +1,30 @@
-# TODO this needs ot be refactored from ground up
 from .base import env
+from django.utils.module_loading import import_string
+import logging as base_logging
 
-DJANGO_LOG_LEVEL = env.str("DJANGO_LOG_LEVEL", "INFO")
 
-# LOGGING
+# Logging config
 # ------------------------------------------------------------------------------
-LOGGING_HANDLER_CLASS = env.str("DJANGO_LOGGING_HANDLER_CLASS", "logging.StreamHandler")
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s "
-            "%(process)d %(thread)d %(message)s"
-        }
-    },
-    "handlers": {
-        "console": {
-            "level": DJANGO_LOG_LEVEL,
-            "class": LOGGING_HANDLER_CLASS,
-            "formatter": "verbose",
-        }
-    },
-    "loggers": {
-        "sentry_sdk": {"level": "ERROR", "handlers": ["console"], "propagate": False},
-    },
-    "root": {"level": DJANGO_LOG_LEVEL, "handlers": ["console"]},
-}
+LOGGING_APP_NAME = env.str("LOGGING_APP_NAME", "demo-django")
+DJANGO_LOG_LEVEL = env.str("DJANGO_LOG_LEVEL", "INFO")
+DEFAULT_LOG_FORMAT = "%(levelname)s %(asctime)s %(module)s \
+%(process)d %(thread)d %(message)s"
 
-if LOGGING_HANDLER_CLASS != "logging.StreamHandler":
-    from celery.signals import after_setup_logger, after_setup_task_logger
 
-    @after_setup_logger.connect
-    @after_setup_task_logger.connect
-    def setup_celery_logging(logger, **kwargs):
-        from django.utils.module_loading import import_string
+class DjangoLogHandler:
+    def __init__(self, sink_type, **kwargs):
+        _class = import_string(sink_type)
+        self._handler = self._class(**kwargs.get("handler_kwargs", {}))
 
-        handler = import_string(LOGGING_HANDLER_CLASS)
+    def attach_to(self, logger):
+        logger.addHandler(self._handler)
 
-        for h in logger.handlers:
-            logger.removeHandler(h)
-        logger.addHandler(handler())
+
+logger = base_logging.getLogger(LOGGING_APP_NAME)
+logger.setLevel(DJANGO_LOG_LEVEL)
+
+CONSOLE_LOGGING_HANDLER_CLASS = env.str(
+    "STREAM_LOGGING_HANDLER_CLASS", "logging.StreamHandler"
+)
+console_handler = DjangoLogHandler(CONSOLE_LOGGING_HANDLER_CLASS)
+console_handler.attach_to(logger)
