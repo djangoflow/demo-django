@@ -46,4 +46,10 @@ fcm-django==1.0.8
 django-df-auth>=0.9
 django-df-notifications>=0.4
 
+# Fluentd Logging
+fluent-logger
+
+# Google Cloud Logging
+google-cloud-logging
+
 -r project.txt
